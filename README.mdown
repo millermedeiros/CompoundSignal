@@ -15,7 +15,7 @@ resolved after all the signals on the group are dispatched. (similar to
 
 ## Dependency
 
-[JS-Signals](http://millermedeiros.github.com/js-signals/)
+[JS-Signals v0.7.0+](http://millermedeiros.github.com/js-signals/)
 
 
 ## Example
@@ -34,7 +34,7 @@ var completedManyThings = new signals.CompoundSignal(endedAnimation, completedSo
 completedManyThings.addOnce( doSomethingOnCompletedManyThings );
 
 function doSomethingOnCompletedManyThings(paramsArr1, paramsArr2){
-  //handler would receive parameters of each signal as arrays since 
+  //handler would receive parameters of each signal as arrays since
   //they can dispatch an arbitrary number of parameters
   console.log( paramsArr1, paramsArr2 );
 }
@@ -42,7 +42,7 @@ function doSomethingOnCompletedManyThings(paramsArr1, paramsArr2){
 
 If loaded using an AMD loader (e.g. [RequireJS](http://requirejs.org/)) or
 inside nodejs it will return the constructor and also add itself to the
-`signals` object.
+`signals` object (to keep consistency with browser environment).
 
 ### AMD
 
@@ -105,3 +105,33 @@ Check if CompoundSignal did resolved.
 
 Restore CompoundSignal to it's original state. Will consider as if no signals
 was dispatched yet and will mark CompoundSignal as unresolved.
+
+
+
+## Distribution Files
+
+You can use the same distribution file for all the evironments, browser script
+tag, AMD, CommonJS.
+
+You can install it on Node.js using [NPM](http://npmjs.org/)
+
+    npm install CompoundSignal
+
+
+
+## Running unit tests
+
+### On the browser
+
+Open `tests/spec_runner.html` on your browser.
+
+
+### On Node.js
+
+Install [npm](http://npmjs.org) and run:
+
+```
+npm install jasmine-node -g
+npm link
+jasmine-node dev/tests/spec
+```
