@@ -1,4 +1,3 @@
-
 # [CompoundSignal](https://github.com/millermedeiros/CompoundSignal/)
 
 CompoundSignal works like a group of signals which should be dispatched
@@ -55,7 +54,7 @@ define(['signals', 'CompoundSignal'], function(signals, CompoundSignal){
 ### nodejs
 
 ```js
-var signals = require('signals').
+var signals = require('signals'),
     CompoundSignal = require('CompoundSignal');
 
 console.log( signals.CompoundSignal === CompoundSignal );  // true
