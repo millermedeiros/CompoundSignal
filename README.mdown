@@ -33,7 +33,7 @@ var completedManyThings = new signals.CompoundSignal(endedAnimation, completedSo
 completedManyThings.addOnce( doSomethingOnCompletedManyThings );
 
 function doSomethingOnCompletedManyThings(paramsArr1, paramsArr2){
-  //handler would receive parameters of each signal as arrays since
+  //handler will receive parameters of each signal as arrays since
   //they can dispatch an arbitrary number of parameters
   console.log( paramsArr1, paramsArr2 );
 }
@@ -59,6 +59,9 @@ var signals = require('signals'),
 
 console.log( signals.CompoundSignal === CompoundSignal );  // true
 ```
+
+For more examples check the unit tests inside the "tests/" folder.
+
 
 
 ## Extra properties / functionalities
