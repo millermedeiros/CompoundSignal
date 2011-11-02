@@ -1,0 +1,107 @@
+
+# [CompoundSignal](https://github.com/millermedeiros/CompoundSignal/)
+
+CompoundSignal works like a group of signals which should be dispatched
+automatically after all the signals contained by the group are dispatched.
+Arguments are passed to listeners as Arrays on the same order as the signals
+were passed on the constructor.
+
+If you are familiar with Promise/Deferred think of it as Promise which will be
+resolved after all the signals on the group are dispatched. (similar to
+[jQuery.when](http://api.jquery.com/jQuery.when/),
+[Q.join](https://github.com/kriskowal/q) and
+[when.all](https://github.com/briancavalier/when.js))
+
+
+## Dependency
+
+[JS-Signals](http://millermedeiros.github.com/js-signals/)
+
+
+## Example
+
+Inside the browser it will simply add a new constructor inside the `signals`
+object:
+
+```js
+var endedAnimation = new signals.Signal();
+var completedSomething = new signals.Signal();
+
+var completedManyThings = new signals.CompoundSignal(endedAnimation, completedSomething);
+
+// CompoundSignal is just a regular Signal that gets dispatched after the other
+// signals are dispatched (and have a similar API)
+completedManyThings.addOnce( doSomethingOnCompletedManyThings );
+
+function doSomethingOnCompletedManyThings(paramsArr1, paramsArr2){
+  //handler would receive parameters of each signal as arrays since 
+  //they can dispatch an arbitrary number of parameters
+  console.log( paramsArr1, paramsArr2 );
+}
+```
+
+If loaded using an AMD loader (e.g. [RequireJS](http://requirejs.org/)) or
+inside nodejs it will return the constructor and also add itself to the
+`signals` object.
+
+### AMD
+
+```js
+define(['signals', 'CompoundSignal'], function(signals, CompoundSignal){
+    console.log( signals.CompoundSignal === CompoundSignal );  // true
+});
+```
+
+### nodejs
+
+```js
+var signals = require('signals').
+    CompoundSignal = require('CompoundSignal');
+
+console.log( signals.CompoundSignal === CompoundSignal );  // true
+```
+
+
+## Extra properties / functionalities
+
+A compound Signal inherits all the methods and properties from a regular
+`Signal` but have a couple properties to toggle the behavior and some
+additional methods as well.
+
+
+### memorize:Boolean
+
+If `true` it will store a reference to previously dispatched arguments and will
+automatically execute callbacks during `add()`/`addOnce()` (similar to
+a "Promise"). Default value is `true`.
+
+
+### override:Boolean
+
+Sets if multiple dispatches of same signal should override previously
+registered parameters. Default value is `false`.
+
+
+### unique:Boolean
+
+If `true` CompoundSignal will act like a "Promise", after first dispatch,
+subsequent dispatches will always pass same arguments. It will also remove all
+the listeners automatically after dispatch. Default value is `true`.
+
+
+### dispatch()
+
+Works similar to a regular Signal `dispatch()` method but if CompoundSignal was
+already "resolved" and it is `unique`, it will always dispatch the same
+arguments, no mather which parameters are passed to the `dispatch` method.
+
+
+### isResolved():Boolean
+
+Check if CompoundSignal did resolved.
+
+
+### reset()
+
+Restore CompoundSignal to it's original state. Will consider as if no signals
+was dispatched yet and will mark CompoundSignal as unresolved.
