@@ -47,6 +47,9 @@ describe('CompoundSignal', function () {
                 expect( arguments.length ).toBe( 2 );
                 expect( p1[0] ).toBe( "foo" );
                 expect( p1[1] ).toBe( 123 );
+                expect( p1[2] ).toBe( false );
+                expect( p1[3] ).toBe( null );
+                expect( p1[4] ).toBe( undefined );
                 expect( p2[0] ).toBe( 456 );
                 expect( p2[1] ).toBe( "bar" );
                 count++;
@@ -55,7 +58,7 @@ describe('CompoundSignal', function () {
             var cs = new signals.CompoundSignal(s1, s2);
             cs.add(onCompound);
 
-            s1.dispatch("foo", 123);
+            s1.dispatch("foo", 123, false, null, undefined);
             s2.dispatch(456, "bar");
 
             expect( count ).toBe( 1 );
