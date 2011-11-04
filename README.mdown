@@ -60,7 +60,7 @@ var signals = require('signals'),
 console.log( signals.CompoundSignal === CompoundSignal );  // true
 ```
 
-For more examples check the unit tests inside the "tests/" folder.
+**For more examples check the unit tests inside the "tests/" folder.**
 
 
 
