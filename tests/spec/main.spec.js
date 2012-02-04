@@ -23,20 +23,20 @@ describe('CompoundSignal', function () {
             });
 
             //defaults
-            expect( cs.memorize ).toBe( true );
+            expect( cs.memorize ).toBe( false );
             expect( cs.override ).toBe( false );
-            expect( cs.unique ).toBe( true );
+            expect( cs.unique ).toBe( false );
 
             s1.dispatch("foo", 123);
             s2.dispatch(456, "bar");
 
             expect( count ).toBe( 1 );
-            expect( cs.getNumListeners() ).toBe( 0 );
+            expect( cs.getNumListeners() ).toBe( 1 );
 
     });
 
 
-    it('should remove all listeners after dispatch', function () {
+    it('should remove all listeners after dispatch if unique and auto-dispatch if memorize', function () {
 
             var s1 = new signals.Signal();
             var s2 = new signals.Signal();
@@ -56,6 +56,8 @@ describe('CompoundSignal', function () {
             };
 
             var cs = new signals.CompoundSignal(s1, s2);
+            cs.unique = true;
+            cs.memorize = true;
             cs.add(onCompound);
 
             s1.dispatch("foo", 123, false, null, undefined);
@@ -98,11 +100,7 @@ describe('CompoundSignal', function () {
 
             expect( count ).toBe( 1 );
 
-            //test if it removed previous listener and if it will dispatch
-            //automatically
-            expect( cs.has(onCompound) ).toBe( false );
-            cs.add(onCompound);
-            expect( count ).toBe( 2 );
+            expect( cs.has(onCompound) ).toBe( true );
 
     });
 
@@ -123,6 +121,8 @@ describe('CompoundSignal', function () {
             };
 
             var cs = new signals.CompoundSignal(s1, s2);
+            cs.unique = true;
+            cs.memorize = true;
             cs.add(onCompound);
 
             s1.dispatch("lorem", 555);

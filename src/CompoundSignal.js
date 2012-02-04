@@ -39,9 +39,9 @@
 
         _compoundProto.override = false;
 
-        _compoundProto.unique = true;
+        _compoundProto.unique = false;
 
-        _compoundProto.memorize = true;
+        _compoundProto.memorize = false;
 
         _compoundProto._registerDispatch = function(idx, args){
 
