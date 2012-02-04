@@ -1,11 +1,11 @@
 /** @license
  * CompoundSignal (https://github.com/millermedeiros/CompoundSignal/)
- * Author: Miller Medeiros - Version: 0.1.0 (2011/10/02)
+ * Author: Miller Medeiros - Version: 0.1.0+ (2012/02/04)
  * Released under the MIT License
  */
 (function (define) {
 
-    define('CompoundSignal', ['signals'], function (signals) {
+    define(['signals'], function (signals) {
 
 
         var _signalProto = signals.Signal.prototype,
@@ -110,10 +110,10 @@
         return CompoundSignal;
     });
 
-}(typeof define === 'function' && define.amd ? define : function (id, deps, factory) {
+}(typeof define === 'function' && define.amd ? define : function (deps, factory) {
     if (typeof module !== 'undefined' && module.exports) { //Node
-        module.exports = factory(require('signals'));
+        module.exports = factory(require(deps[0]));
     } else { //browser
-        window['signals'][id] = factory(window['signals']);
+        factory(window[deps[0]]);
     }
 }));
