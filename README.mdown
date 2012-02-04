@@ -75,7 +75,7 @@ additional methods as well.
 
 If `true` it will store a reference to previously dispatched arguments and will
 automatically execute callbacks during `add()`/`addOnce()` (similar to
-a "Promise"). Default value is `true`.
+a "Promise"). Default value is `false`.
 
 
 ### override:Boolean
@@ -88,7 +88,7 @@ registered parameters. Default value is `false`.
 
 If `true` CompoundSignal will act like a "Promise", after first dispatch,
 subsequent dispatches will always pass same arguments. It will also remove all
-the listeners automatically after dispatch. Default value is `true`.
+the listeners automatically after dispatch. Default value is `false`.
 
 
 ### dispatch()

@@ -1,6 +1,6 @@
 /** @license
  * CompoundSignal (https://github.com/millermedeiros/CompoundSignal/)
- * Author: Miller Medeiros - Version: 0.1.0+ (2012/02/04)
+ * Author: Miller Medeiros - Version: 0.2.0 (2012/02/04)
  * Released under the MIT License
  */
 (function (define) {
@@ -25,7 +25,9 @@
                 binding;
 
             while(n--){
-                binding = sigs[n].add(this._registerDispatch, this);
+                //will register dispatch after all the listeners are
+                //executed since 1 << 31 is probably the lowest priority
+                binding = sigs[n].add(this._registerDispatch, this, 1 << 31);
                 binding.params = [n]; //use index to register params..
             }
 

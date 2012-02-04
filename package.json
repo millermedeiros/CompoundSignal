@@ -3,7 +3,7 @@
     "description" : "Special Signal that groups multiple Signals together and dispatches after all the group elements are dispatched.",
     "keywords" : ["js-signals", "signals", "pub/sub", "event", "publish", "subscribe", "observer", "when", "deferred", "promises"],
     "homepage" : "https://github.com/millermedeiros/CompoundSignal/",
-    "version" : "0.1.0+",
+    "version" : "0.2.0",
     "author" : {
         "name" : "Miller Medeiros",
         "url" : "http://blog.millermedeiros.com/"
