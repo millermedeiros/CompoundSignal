@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/millermedeiros/CompoundSignal.png)](http://travis-ci.org/millermedeiros/CompoundSignal)
 # [CompoundSignal](https://github.com/millermedeiros/CompoundSignal/)
 
 CompoundSignal works like a group of signals which should be dispatched
